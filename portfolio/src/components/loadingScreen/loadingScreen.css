@@ -1,0 +1,55 @@
+.loadingScreen {
+    min-height: 100svh;
+    background: #05070d;
+    color: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingScreenContainer {
+    width: min(680px, calc(100% - 32px));
+}
+
+.bootLabel {
+    font-family: var(--mono);
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.bootWindow {
+    min-height: 260px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: rgba(13, 19, 32, 0.78);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+}
+
+.bootLine {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-h);
+}
+
+.bootLine span {
+    color: var(--success);
+    margin-right: 10px;
+}
+
+.loadingBar {
+    height: 8px;
+    margin-top: 18px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(148, 163, 184, 0.18);
+}
+
+.loadingProgress {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    transition: width 0.35s ease;
+}
