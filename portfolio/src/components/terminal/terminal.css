@@ -1,0 +1,95 @@
+.terminalContainer {
+    width: min(760px, calc(100vw - 32px));
+    height: 420px;
+    background: rgba(5, 7, 13, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+}
+
+.terminalHeader {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px;
+    background: rgba(255, 255, 255, 0.06);
+    cursor: grab;
+    user-select: none;
+}
+
+.terminalHeader:active {
+    cursor: grabbing;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.red { background: #ef4444; }
+.yellow { background: #f59e0b; }
+.green { background: #22c55e; }
+
+.terminalHeading {
+    margin-left: 10px;
+    font-family: var(--mono);
+    color: var(--text);
+}
+
+
+.terminalBody {
+  height: calc(100% - 44px);
+  padding: 18px;
+  font-family: var(--mono);
+  color: var(--text-h);
+}
+
+.terminalHistory {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.terminalLine {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.terminalLine.system {
+  color: var(--text);
+}
+
+.terminalLine.output {
+  color: var(--text-h);
+}
+
+.terminalLine.command {
+  color: var(--text-h);
+}
+
+.terminalPrompt {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+.terminalInputLine {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.terminalInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-h);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  caret-color: var(--accent);
+}
