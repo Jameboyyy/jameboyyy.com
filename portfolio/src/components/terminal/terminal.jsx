@@ -18,13 +18,13 @@ const fileSystem = {
 }
 
 const fileContent = {
-    '~/about.md': 'James Daniel Cadavona - Full Stack Engineer with a growing focus in DevOps and infrastructure.',
-    '~/contact.md': 'Github: jameboyyy | LinkedIn: James Cadavona | Email: jdpcadavona@gmail.com',
-    '~/resume.pdf': 'Use command: cat resume.pdf',
+    '~/about.md': 'James Daniel Cadavona - Full Stack Engineer with a growing focus in DevOps and infrastructure. | Run: open about.md',
+    '~/contact.md': 'Github: jameboyyy | LinkedIn: James Cadavona | Email: jdpcadavona@gmail.com | Run: open contact.md',
+    '~/resume.pdf': 'Use command: open resume.pdf',
     
     '~/projects/stackwatch.md': 'StackWatch - Full Stack Monitoring Dashboard using React, Node.js, Docker, NGINX, AWS, and Terraform. Run: open stackwatch.md',
-    '~/projects/spacefinder.md': 'SpaceFinder - React Native app for discovering productive third spaces.',
-    '~/projects/gitops-pipeline.md': 'GitOps Pipeline - GitLab CI/CD, Docker, ECR, EKS, Argo CD, and Kustomize.',
+    '~/projects/spacefinder.md': 'SpaceFinder - React Native app for discovering productive third spaces. Run: open spacefinder.md',
+    '~/projects/gitops-pipeline.md': 'GitOps Pipeline - GitLab CI/CD, Docker, ECR, EKS, Argo CD, and Kustomize. Run: open gitops-pipeline.md',
 
     '~/skills.md': 'Run: open skills.md',
     
@@ -37,7 +37,7 @@ const Terminal = ({ onOpenView }) => {
     const [input, setInput] = useState('');
     const [currentPath, setCurrentPath] = useState('~')
     const [history, setHistory] = useState ([
-        { type: 'system', text: 'Welcome to JamesOS. '},
+        { type: 'system', text: 'Welcome to jameboyyyOS. '},
         { type: 'system', text: 'Type help to get started.'},
     ])
 
@@ -126,7 +126,7 @@ const Terminal = ({ onOpenView }) => {
             return
           }
         }
-        
+
         if (currentPath === '~' && target === 'about.md') {
             onOpenView('about')
             addOutput('Opening about panel...')
@@ -222,7 +222,7 @@ const Terminal = ({ onOpenView }) => {
                     <span className="dot red"></span>
                     <span className="dot yellow"></span>
                     <span className="dot green"></span>
-                    <p className="terminalHeading">james@portfolio:~</p>
+                    <p className="terminalHeading">jameboyyyOS@portfolio:~</p>
                 </div>
 
                 <div className="terminalBody">
@@ -231,7 +231,7 @@ const Terminal = ({ onOpenView }) => {
                             <div key={index} className={`terminalLine ${item.type}`}>
                                 {item.type === 'command' ? (
                                     <>
-                                        <span className="terminalPrompt">james@portfolio:{item.path}$</span>
+                                        <span className="terminalPrompt">jameboyyyOS@portfolio:{item.path}$</span>
                                         {item.text}
                                     </>
                                 ) : (
@@ -241,7 +241,7 @@ const Terminal = ({ onOpenView }) => {
                         ))}
                     </div>
                     <div className="terminalInputLine">
-                        <span className="terminalPrompt">james@portfolio:{currentPath}$</span>
+                        <span className="terminalPrompt">jameboyyyOS@portfolio:{currentPath}$</span>
                         <input
                             className="terminalInput"
                             value={input}

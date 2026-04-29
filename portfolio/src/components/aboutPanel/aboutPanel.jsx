@@ -5,11 +5,15 @@ const AboutPanel = () => {
       <div className="aboutPanel">
         <div className="aboutHeader">
           <p className="aboutEyebrow">SYSTEM NODE</p>
-          <h2>james@portfolio</h2>
+          <h2>jameboyyyOS@portfolio</h2>
         </div>
   
         <div className="aboutProfile">
-            <img src="/Profile.jpg" alt="James Cadavona" />
+            <div className="avatarWrapper">
+                <img src="/Profile.jpg" alt="James Cadavona" />
+                <span className="statusDot" />
+            </div>
+
             <div>
                 <strong>James Daniel Cadavona</strong>
                 <p>Full Stack Engineer</p>
