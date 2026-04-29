@@ -4,16 +4,12 @@ import './terminal.css'
 
 const fileSystem = {
     '~': {
-        folders: ['projects', 'skills', 'blog'],
-        files: ['about.txt', 'contact.txt', 'resume.pdf'],
+        folders: ['projects', 'blog'],
+        files: ['about.md', 'contact.md', 'resume.pdf', 'skills.md'],
     },
     '~/projects': {
         folders: [],
         files: ['stackwatch.md', 'spacefinder.md', 'gitops-pipeline.md'],
-    },
-    '~/skills': {
-        folders: [],
-        files: ['frontend.txt', 'backend.txt', 'devops.txt'],
     },
     '~/blog': {
         folders: [],
@@ -22,23 +18,21 @@ const fileSystem = {
 }
 
 const fileContent = {
-    '~/about.txt': 'James Daniel Cadavona - Full Stack Engineer with a growing focus in DevOps and infrastructure.',
-    '~/contact.txt': 'Github: jameboyyy | LinkedIn: James Cadavona | Email: jdpcadavona@gmail.com',
+    '~/about.md': 'James Daniel Cadavona - Full Stack Engineer with a growing focus in DevOps and infrastructure.',
+    '~/contact.md': 'Github: jameboyyy | LinkedIn: James Cadavona | Email: jdpcadavona@gmail.com',
     '~/resume.pdf': 'Use command: cat resume.pdf',
     
     '~/projects/stackwatch.md': 'StackWatch - Full Stack Monitoring Dashboard using React, Node.js, Docker, NGINX, AWS, and Terraform. Run: open stackwatch.md',
     '~/projects/spacefinder.md': 'SpaceFinder - React Native app for discovering productive third spaces.',
     '~/projects/gitops-pipeline.md': 'GitOps Pipeline - GitLab CI/CD, Docker, ECR, EKS, Argo CD, and Kustomize.',
 
-    '~/skills/frontend.txt': 'React, React Native, JavaScript, TypeScript, HTML, CSS',
-    '~/skills/backend.txt': 'Node.js, Express, REST APIs, PostgreSQL, Supabase',
-    '~/skills/devops.txt': 'Linux, Docker, AWS, Terraform, Kubernetes, GitLab CI/CD, Argo CD',
+    '~/skills.md': 'Run: open skills.md',
     
     '~/blog/building-stackwatch.md': 'Blog draft: What I learned building Stackwatch.',
     '~/blog/learning-terraform.md': 'Blog draft: My notes on learning Terraform state and provisioning',
 }
 
-const Terminal = ({ onOpenProject }) => {
+const Terminal = ({ onOpenView }) => {
 
     const [input, setInput] = useState('');
     const [currentPath, setCurrentPath] = useState('~')
@@ -111,28 +105,53 @@ const Terminal = ({ onOpenProject }) => {
     }
 
     const handleOpen = (target) => {
-        const projectMap = {
-          'stackwatch.md': 'stackwatch',
-          stackwatch: 'stackwatch',
-          'spacefinder.md': 'spacefinder',
-          spacefinder: 'spacefinder',
-          'gitops-pipeline.md': 'gitops',
-          gitops: 'gitops',
-        }
-      
-        if (projectMap[target]) {
-          onOpenProject(projectMap[target])
-          addOutput(`Opening ${target}...`)
+        if (!target) {
+          addOutput('open: missing target')
           return
         }
       
-        if (target === 'resume.pdf') {
+        if (currentPath === '~/projects') {
+          const projectMap = {
+            'stackwatch.md': 'stackwatch',
+            stackwatch: 'stackwatch',
+            'spacefinder.md': 'spacefinder',
+            spacefinder: 'spacefinder',
+            'gitops-pipeline.md': 'gitops',
+            gitops: 'gitops',
+          }
+      
+          if (projectMap[target]) {
+            onOpenView(projectMap[target])
+            addOutput(`Opening ${target}...`)
+            return
+          }
+        }
+        
+        if (currentPath === '~' && target === 'about.md') {
+            onOpenView('about')
+            addOutput('Opening about panel...')
+            return
+          }
+          
+          if (currentPath === '~' && target === 'contact.md') {
+            onOpenView('contact')
+            addOutput('Opening contact panel...')
+            return
+          }
+
+        if (currentPath === '~' && target === 'skills.md') {
+            onOpenView('skills')
+            addOutput('Opening skills matrix...')
+            return
+          }
+      
+        if (currentPath === '~' && target === 'resume.pdf') {
           window.open('/resume.pdf', '_blank')
           addOutput('Opening resume.pdf...')
           return
         }
       
-        addOutput(`open: unable to open ${target}`)
+        addOutput(`open: cannot open ${target} from ${currentPath}`)
       }
 
     const runCommand = (rawCommand) => {

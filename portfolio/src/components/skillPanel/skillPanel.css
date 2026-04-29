@@ -1,0 +1,81 @@
+.skillsPanel {
+    height: 100%;
+    width: 100%;
+    max-height: calc(100svh - 64px);
+    overflow-y: auto;
+    background: rgba(5, 7, 13, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+    padding: 20px;
+    color: var(--text-h);
+  }
+  
+  .skillsPanelHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  
+  .skillsPanelHeader button {
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-h);
+    border-radius: 10px;
+    padding: 4px 10px;
+    cursor: pointer;
+  }
+  
+  .skillsEyebrow {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+  
+  .skillsGrid {
+    display: grid;
+    gap: 12px;
+  }
+  
+  .skillGroupCard {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    padding: 14px;
+  }
+  
+  .skillGroupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .skillGroupHeader h3 {
+    font-size: 1rem;
+  }
+  
+  .skillGroupHeader span {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+  
+  .skillTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .skillTags span {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+  }

@@ -1,8 +1,6 @@
 .projectPanel {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    width: min(620px, calc(100vw - 64px));
+    height: 100%;
+    width: 100%;
     max-height: calc(100svh - 64px);
     overflow-y: auto;
     background: rgba(5, 7, 13, 0.9);
@@ -74,7 +72,7 @@
   .panelLinks a:active {
     transform: translateY(0);
     opacity: 0.9;
-  }
+  } 
   
   .panelGrid {
     display: grid;
