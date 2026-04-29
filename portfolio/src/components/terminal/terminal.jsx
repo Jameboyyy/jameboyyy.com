@@ -26,7 +26,7 @@ const fileContent = {
     '~/contact.txt': 'Github: jameboyyy | LinkedIn: James Cadavona | Email: jdpcadavona@gmail.com',
     '~/resume.pdf': 'Use command: cat resume.pdf',
     
-    '~/projects/stackwatch.md': 'StackWatch - Full Stack Monitoring Dashboard using React, Node.js, Docker, NGINX, AWS, and Terraform.',
+    '~/projects/stackwatch.md': 'StackWatch - Full Stack Monitoring Dashboard using React, Node.js, Docker, NGINX, AWS, and Terraform. Run: open stackwatch.md',
     '~/projects/spacefinder.md': 'SpaceFinder - React Native app for discovering productive third spaces.',
     '~/projects/gitops-pipeline.md': 'GitOps Pipeline - GitLab CI/CD, Docker, ECR, EKS, Argo CD, and Kustomize.',
 
@@ -38,7 +38,7 @@ const fileContent = {
     '~/blog/learning-terraform.md': 'Blog draft: My notes on learning Terraform state and provisioning',
 }
 
-const Terminal = () => {
+const Terminal = ({ onOpenProject }) => {
 
     const [input, setInput] = useState('');
     const [currentPath, setCurrentPath] = useState('~')
@@ -92,7 +92,7 @@ const Terminal = () => {
         if (fileSystem[nextPath]) {
             setCurrentPath(nextPath)
         } else {
-            addOutput(`cd: no such directoyr: ${target}`)
+            addOutput(`cd: no such directory: ${target}`)
         }
     }
 
@@ -111,14 +111,29 @@ const Terminal = () => {
     }
 
     const handleOpen = (target) => {
-        if (target === 'resume.pdf') {
-            window.open('/resume.pdf', '_blank')
-            addOutput('Opening resume.pdf...')
-            return
+        const projectMap = {
+          'stackwatch.md': 'stackwatch',
+          stackwatch: 'stackwatch',
+          'spacefinder.md': 'spacefinder',
+          spacefinder: 'spacefinder',
+          'gitops-pipeline.md': 'gitops',
+          gitops: 'gitops',
         }
-
+      
+        if (projectMap[target]) {
+          onOpenProject(projectMap[target])
+          addOutput(`Opening ${target}...`)
+          return
+        }
+      
+        if (target === 'resume.pdf') {
+          window.open('/resume.pdf', '_blank')
+          addOutput('Opening resume.pdf...')
+          return
+        }
+      
         addOutput(`open: unable to open ${target}`)
-    }
+      }
 
     const runCommand = (rawCommand) => {
         const cleaned = rawCommand.trim()
@@ -136,7 +151,7 @@ const Terminal = () => {
 
         switch(command) {
              case 'help':
-                addOutput('Commands: help, ls, cd, cat, pwd, whoami, open, clear')
+                addOutput('Commands: help, ls, cd, cat, pwd, whoami, open, clear | Try: open dashboard, open projects')
                 break
 
             case 'ls':

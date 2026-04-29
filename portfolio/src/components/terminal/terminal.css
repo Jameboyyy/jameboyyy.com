@@ -46,6 +46,7 @@
   padding: 18px;
   font-family: var(--mono);
   color: var(--text-h);
+  overflow-y: auto;
 }
 
 .terminalHistory {
