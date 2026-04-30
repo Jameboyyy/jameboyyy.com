@@ -279,11 +279,60 @@ const Terminal = ({
     }
   }
 
+    const commands = ['help', 'ls', 'cd', 'cat', 'pwd', 'whoami', 'open', 'clear', 'login', 'nano']
+
+    const handleTabCompletion = () => {
+    const parts = input.trim().split(' ')
+
+    if (parts.length === 1) {
+        const matches = commands.filter((cmd) => cmd.startsWith(parts[0]))
+
+        if (matches.length === 1) {
+        setInput(`${matches[0]} `)
+        } else if (matches.length > 1) {
+        addOutput(matches.join('  '))
+        }
+
+        return
+    }
+
+    const command = parts[0]
+    const currentArg = parts[1] || ''
+
+    let options = []
+
+    if (currentPath === '~/blogs') {
+        options = Object.keys(blogPosts)
+    } else {
+        const dir = fileSystem[currentPath]
+
+        if (dir) {
+        options = [...dir.folders, ...dir.files]
+        }
+    }
+
+    const matches = options.filter((option) => option.startsWith(currentArg))
+
+    if (matches.length === 1) {
+        setInput(`${command} ${matches[0]}`)
+    } else if (matches.length > 1) {
+        addOutput(matches.join('  '))
+    }
+    }
+
   const handleKeyDown = (event) => {
+
+    if (event.key === 'Tab') {
+        event.preventDefault()
+        handleTabCompletion()
+    }
+
     if (event.key === 'Enter') {
       runCommand(input)
       setInput('')
     }
+
+
   }
 
   return (
