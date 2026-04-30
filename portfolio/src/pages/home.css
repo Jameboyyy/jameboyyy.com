@@ -23,6 +23,11 @@
   left: 80px;
   z-index: 1000;
   width: fit-content;
+  pointer-events: none;
+}
+
+.terminalArea .terminalContainer {
+  pointer-events: auto;
 }
 
 .mainViewerArea {
