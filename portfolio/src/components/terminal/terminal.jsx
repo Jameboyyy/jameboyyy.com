@@ -68,7 +68,7 @@ const Terminal = ({
 
   const handleLs = () => {
     if (currentPath === '~/blogs') {
-      const posts = Object.keys(blogPosts).join('  ')
+      const posts = Object.keys(blogPosts || {}).join('  ')
       addOutput(posts || 'empty directory')
       return
     }
@@ -116,11 +116,12 @@ const Terminal = ({
       return
     }
 
-    if (currentPath === '~/blogs' && blogPosts[target]) {
-      setActiveBlogPost(blogPosts[target])
-      addOutput(`Reading ${target} in blog panel...`)
-      return
-    }
+    if (currentPath === '~/blogs' && blogPosts?.[target]) {
+        setActiveBlogPost(blogPosts[target])
+        onOpenView('blog')
+        addOutput(`Opening ${target} in blog panel...`)
+        return
+      }
 
     const fullPath = getFullPath(target)
 
@@ -302,7 +303,7 @@ const Terminal = ({
     let options = []
 
     if (currentPath === '~/blogs') {
-        options = Object.keys(blogPosts)
+        options = Object.keys(blogPosts || {})
     } else {
         const dir = fileSystem[currentPath]
 
