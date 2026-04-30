@@ -214,9 +214,10 @@ const Terminal = ({ onOpenView }) => {
     }
 
     const nodeRef = useRef(null)
+    const inputRef = useRef(null);
 
     return (
-        <Draggable nodeRef={nodeRef} handle=".terminalHeader" bounds="parent">
+        <Draggable nodeRef={nodeRef} handle=".terminalHeader" >
             <div ref={nodeRef} className="terminalContainer">
                 <div className="terminalHeader">
                     <span className="dot red"></span>
@@ -225,7 +226,9 @@ const Terminal = ({ onOpenView }) => {
                     <p className="terminalHeading">JamesOS@portfolio:~</p>
                 </div>
 
-                <div className="terminalBody">
+                <div className="terminalBody"
+                    onClick={() => inputRef.current?.focus()}
+                >
                     <div className="terminalHistory">
                         {history.map((item, index) => (
                             <div key={index} className={`terminalLine ${item.type}`}>
@@ -243,6 +246,7 @@ const Terminal = ({ onOpenView }) => {
                     <div className="terminalInputLine">
                         <span className="terminalPrompt">JamesOS@portfolio:{currentPath}$</span>
                         <input
+                            ref={inputRef}
                             className="terminalInput"
                             value={input}
                             onChange={(event) => setInput(event.target.value)}

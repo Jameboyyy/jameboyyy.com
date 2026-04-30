@@ -14,10 +14,12 @@ const Home = () => {
 
   return (
     <section className="homepageSection">
+      
+      <div className="terminalArea">
+        <Terminal onOpenView={setActiveView} />
+      </div>
+
         <div className="dashboardLayout">
-            <div className="terminalArea">
-            <Terminal onOpenView={setActiveView} />
-            </div>
 
             <div className="mainViewerArea">
             {activeProject && <ProjectPanel project={activeProject} />}

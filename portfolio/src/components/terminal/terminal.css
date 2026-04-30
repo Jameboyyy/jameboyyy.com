@@ -75,13 +75,15 @@
 
 .terminalPrompt {
   color: var(--accent);
-  margin-right: 8px;
+  margin-right: 12px;
+  white-space: nowrap;
 }
 
 .terminalInputLine {
   display: flex;
   align-items: center;
   text-align: left;
+  gap: 4px;
 }
 
 .terminalInput {

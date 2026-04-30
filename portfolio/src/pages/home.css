@@ -12,14 +12,17 @@
   padding: clamp(16px, 2vw, 28px);
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 240px;
   gap: 18px;
   box-sizing: border-box;
 }
 
 .terminalArea {
-  grid-column: 1;
-  grid-row: 1;
+  position: fixed;
+  top: 80px;
+  left: 80px;
+  z-index: 1000;
+  width: fit-content;
 }
 
 .mainViewerArea {
@@ -37,7 +40,6 @@
   border-radius: 14px;
   padding: 14px;
   background: rgba(255, 255, 255, 0.04);
-  min-height: 240px;
 }
 
 .bottomRight {
