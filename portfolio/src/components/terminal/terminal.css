@@ -96,3 +96,45 @@
   font-size: 0.9rem;
   caret-color: var(--accent);
 }
+
+.nanoEditor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nanoTopBar,
+.nanoBottomBar {
+  font-family: var(--mono);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 8px 10px;
+}
+
+.nanoTextarea {
+  flex: 1;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-h);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.nanoBottomBar {
+  display: flex;
+  gap: 10px;
+}
+
+.nanoBottomBar button {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  font-family: var(--mono);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
