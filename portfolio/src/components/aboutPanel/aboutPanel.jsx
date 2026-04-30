@@ -5,7 +5,7 @@ const AboutPanel = () => {
       <div className="aboutPanel">
         <div className="aboutHeader">
           <p className="aboutEyebrow">SYSTEM NODE</p>
-          <h2>jameboyyyOS@portfolio</h2>
+          <h2>JamesOS@portfolio</h2>
         </div>
   
         <div className="aboutProfile">

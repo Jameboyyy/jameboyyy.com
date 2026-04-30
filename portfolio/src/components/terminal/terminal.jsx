@@ -37,7 +37,7 @@ const Terminal = ({ onOpenView }) => {
     const [input, setInput] = useState('');
     const [currentPath, setCurrentPath] = useState('~')
     const [history, setHistory] = useState ([
-        { type: 'system', text: 'Welcome to jameboyyyOS. '},
+        { type: 'system', text: 'Welcome to JamesOS. '},
         { type: 'system', text: 'Type help to get started.'},
     ])
 
@@ -222,7 +222,7 @@ const Terminal = ({ onOpenView }) => {
                     <span className="dot red"></span>
                     <span className="dot yellow"></span>
                     <span className="dot green"></span>
-                    <p className="terminalHeading">jameboyyyOS@portfolio:~</p>
+                    <p className="terminalHeading">JamesOS@portfolio:~</p>
                 </div>
 
                 <div className="terminalBody">
@@ -231,7 +231,7 @@ const Terminal = ({ onOpenView }) => {
                             <div key={index} className={`terminalLine ${item.type}`}>
                                 {item.type === 'command' ? (
                                     <>
-                                        <span className="terminalPrompt">jameboyyyOS@portfolio:{item.path}$</span>
+                                        <span className="terminalPrompt">JamesOS@portfolio:{item.path}$</span>
                                         {item.text}
                                     </>
                                 ) : (
@@ -241,7 +241,7 @@ const Terminal = ({ onOpenView }) => {
                         ))}
                     </div>
                     <div className="terminalInputLine">
-                        <span className="terminalPrompt">jameboyyyOS@portfolio:{currentPath}$</span>
+                        <span className="terminalPrompt">JamesOS@portfolio:{currentPath}$</span>
                         <input
                             className="terminalInput"
                             value={input}

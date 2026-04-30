@@ -57,4 +57,3 @@ const ContactPanel = () => {
 }
 
 export default ContactPanel
-// test

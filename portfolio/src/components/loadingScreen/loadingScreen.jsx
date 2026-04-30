@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './loadingScreen.css';
 
 const bootLines = [
-    'Initializing jameboyyyOS...',
+    'Initializing JamesOS...',
     'Loading portfolio modules...',
     'Mounting /projects',
     'Mounting /skills',
@@ -32,7 +32,7 @@ const LoadingScreen = ({ onComplete }) => {
     return (
         <section className="loadingScreen">
             <div className="loadingScreenContainer">
-                <p className="bootLabel">jameboyyyOS v1.0</p>
+                <p className="bootLabel">JamesOS v1.0</p>
 
                 <div className="bootWindow">
                     {bootLines.slice(0, lineIndex + 1).map((line, index) => (
