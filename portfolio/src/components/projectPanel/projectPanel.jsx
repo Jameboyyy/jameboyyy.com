@@ -8,7 +8,7 @@ const getRepoLabel = (url) => {
   return 'Repo'
 }
 
-const ProjectPanel = ({ project, onClose }) => {
+const ProjectPanel = ({ project }) => {
   if (!project) return null
 
   return (
@@ -18,8 +18,6 @@ const ProjectPanel = ({ project, onClose }) => {
           <p className="panelEyebrow">{project.type}</p>
           <h2>{project.title}</h2>
         </div>
-
-        <button onClick={onClose}>×</button>
       </div>
 
       <div className="panelGrid">

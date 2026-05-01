@@ -9,7 +9,7 @@ const fileSystem = {
   },
   '~/projects': {
     folders: [],
-    files: ['stackwatch.md', 'spacefinder.md', 'gitops-pipeline.md'],
+    files: ['stackwatch.md', 'spacefinder.md', 'gitops-pipeline.md', 'acebarbershopgg.md'],
   },
   '~/blogs': {
     folders: [],
@@ -30,6 +30,8 @@ const fileContent = {
     'SpaceFinder - React Native app for discovering productive third spaces. Run: open spacefinder.md',
   '~/projects/gitops-pipeline.md':
     'GitOps Pipeline - GitLab CI/CD, Docker, ECR, EKS, Argo CD, and Kustomize. Run: open gitops-pipeline.md',
+    '~/projects/acebarbershopgg.md':
+      'Acebarbershopgg - Next.js, SanityCMS, HTML, CSS, Javascript, Vercel. Modern barbershop website for bringing new new customers. Run: open acebarbershopgg.md',
 
   '~/skills.md': 'Run: open skills.md',
 }
@@ -146,6 +148,8 @@ const Terminal = ({
         spacefinder: 'spacefinder',
         'gitops-pipeline.md': 'gitops',
         gitops: 'gitops',
+        'acebarbershopgg.md': 'acebarbershopgg',
+        acebarbershopgg: 'acebarbershopgg'
       }
 
       if (projectMap[target]) {

@@ -61,4 +61,23 @@ export const projects = {
         'Studied GitOps synchronization through Argo CD',
       ],
     },
+
+    acebarbershopgg: {
+      title: 'acebarbershop.gg',
+      type: 'Barbershop Website',
+      status: 'Completed',
+      stack: ['Next.js, HTML, CSS, Javascript, SanityCMS, Vercel'],
+      repo: 'https://github.com/Jameboyyy/Ace-BarberShop',
+      demo: 'https://www.acebarbershopgg.com/',
+      overview: 'Built and deployed a responsive website for a local barbershop, improving online visibilty and creating a smoother experience for new customers.',
+      architecture: 'Next.js → SanityCMS → Vercel',
+      devops: 'Leveraged Vercel for continuous deployment, automatically redeploying the site on each Git commit',
+      features: [
+        'Built with Next.js for fast, server rendered performance',
+        'Integrated Sanity CMS for dynamic content management',
+        'Responsive multi page layout for services, pricing, and contact',
+        'Gallery section to showcase haircut styles and previous work',
+        'Integrated Acuity Scheduling for online appointment booking',
+      ]
+    }
   }
