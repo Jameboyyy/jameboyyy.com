@@ -1,0 +1,36 @@
+.blogReader {
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.blogLabel {
+  font-size: 0.7rem;
+  letter-spacing: 0.12rem;
+  opacity: 0.6;
+  margin-bottom: 0.5rem;
+}
+
+.blogReader h3 {
+  margin-bottom: 0.4rem;
+}
+
+.blogDate {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.blogExcerpt {
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.blogBody {
+  line-height: 1.7;
+}
+
+.blogBody p {
+  margin-bottom: 1rem;
+}

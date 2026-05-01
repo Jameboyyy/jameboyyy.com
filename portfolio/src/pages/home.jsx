@@ -1,29 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './home.css'
 import Terminal from '../components/terminal/terminal.jsx'
 import ProjectPanel from '../components/projectPanel/projectPanel.jsx'
 import SkillPanel from '../components/skillPanel/skillPanel.jsx'
 import AboutPanel from '../components/aboutPanel/aboutPanel.jsx'
 import ContactPanel from '../components/contactPanel/contactPanel.jsx'
+import BlogPanel from '../components/blogPanel/blogPanel.jsx'
 import { projects } from '../data/projects.js'
-
-const starterPosts = {
-  'building-stackwatch.md': {
-    title: 'Building StackWatch',
-    content: 'This is my first local blog post about StackWatch.'
-  },
-  'learning-terraform.md': {
-    title: 'Learning Terraform',
-    content: 'Notes on learning Terraform, state, and infrastructure provisioning.'
-  },
-}
+import { getPosts } from '../lib/blogQueries.js'
 
 const Home = () => {
   const [activeView, setActiveView] = useState(null)
-  const [blogPosts, setBlogPosts] = useState(starterPosts)
+  const [blogPosts, setBlogPosts] = useState({})
   const [activeBlogPost, setActiveBlogPost] = useState(null)
 
   const activeProject = projects[activeView]
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const posts = await getPosts()
+
+        console.log('SANITY POSTS:', posts)
+
+        const formattedPosts = posts.reduce((acc, post) => {
+          acc[`${post.slug}.md`] = post
+          return acc
+        }, {})
+
+        console.log('Formatted Posts:', formattedPosts)
+
+        setBlogPosts(formattedPosts)
+      } catch (error) {
+        console.error('Failed to fetch Sanity posts:', error)
+      }
+    }
+
+    fetchPosts()
+  }, [])
 
   return (
     <section className="homepageSection">
@@ -52,10 +66,7 @@ const Home = () => {
 
         <div className="bottomLeft">
           {activeBlogPost ? (
-            <article className="blogReader">
-              <h3>{activeBlogPost.title}</h3>
-              <p>{activeBlogPost.content}</p>
-            </article>
+            <BlogPanel post={activeBlogPost} />
           ) : (
             <p className="panelPlaceholder">Blog reader / logs</p>
           )}
