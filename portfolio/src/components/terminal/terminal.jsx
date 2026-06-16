@@ -63,15 +63,50 @@ const Terminal = ({
 
   const getFullPath = (target) => {
     if (!target) return currentPath
-    if (target.startsWith('~/')) return target
-    if (target === '~') return '~'
-    return `${currentPath}/${target}`
+
+    const cleanTarget = target.replace(/\/$/, '')
+
+    if (cleanTarget.startsWith('~/')) return cleanTarget
+    if (cleanTarget === '~') return '~'
+
+    return `${currentPath}/${cleanTarget}`
   }
 
   const handleLs = () => {
-    if (currentPath === '~/blogs') {
-      const posts = Object.keys(blogPosts || {}).join('  ')
-      addOutput(posts || 'empty directory')
+    if (currentPath.startsWith('~/blogs')) {
+      const relativePath = currentPath.replace('~/blogs', '').replace(/^\//, '')
+
+      const folders = new Set()
+      const files = []
+
+      Object.keys(blogPosts || {}).forEach((postPath) => {
+        const parts = postPath.split('/')
+
+        const currentParts = relativePath ? relativePath.split('/') : []
+
+        const isInCurrentDirectory = currentParts.every(
+          (part, index) => parts[index] === part
+        )
+
+        if (!isInCurrentDirectory) return
+
+        const nextItem = parts[currentParts.length]
+
+        if (!nextItem) return
+
+        if (parts.length === currentParts.length + 1) {
+          files.push(nextItem)
+        } else {
+          folders.add(nextItem)
+        }
+      })
+
+      const output = [
+        ...Array.from(folders).map((folder) => `${folder}/`),
+        ...files,
+      ].join('  ')
+
+      addOutput(output || 'empty directory')
       return
     }
 
@@ -98,7 +133,10 @@ const Terminal = ({
 
     if (target === '..') {
       if (currentPath === '~') return
-      const nextPath = currentPath.split('/').slice(0, -1).join('/') || '~'
+
+      const nextPath =
+        currentPath.split('/').slice(0, -1).join('/') || '~'
+
       setCurrentPath(nextPath)
       return
     }
@@ -107,9 +145,25 @@ const Terminal = ({
 
     if (fileSystem[nextPath]) {
       setCurrentPath(nextPath)
-    } else {
-      addOutput(`cd: no such directory: ${target}`)
+      return
     }
+
+    if (nextPath.startsWith('~/blogs')) {
+      const relativePath = nextPath
+        .replace('~/blogs', '')
+        .replace(/^\//, '')
+
+      const folderExists = Object.keys(blogPosts || {}).some((postPath) => 
+        postPath.startsWith(`${relativePath}/`)
+      )
+
+      if (folderExists) {
+        setCurrentPath(nextPath)
+        return
+      }
+    }
+
+    addOutput(`cd: no such directory: ${target}`)
   }
 
   const handleCat = (target) => {
@@ -286,19 +340,19 @@ const Terminal = ({
 
     const commands = ['help', 'ls', 'cd', 'cat', 'pwd', 'whoami', 'open', 'clear', 'login', 'nano']
 
-    const handleTabCompletion = () => {
+  const handleTabCompletion = () => {
     const parts = input.trim().split(' ')
 
     if (parts.length === 1) {
-        const matches = commands.filter((cmd) => cmd.startsWith(parts[0]))
+      const matches = commands.filter((cmd) => cmd.startsWith(parts[0]))
 
-        if (matches.length === 1) {
+      if (matches.length === 1) {
         setInput(`${matches[0]} `)
-        } else if (matches.length > 1) {
+      } else if (matches.length > 1) {
         addOutput(matches.join('  '))
-        }
+      }
 
-        return
+      return
     }
 
     const command = parts[0]
@@ -306,24 +360,53 @@ const Terminal = ({
 
     let options = []
 
-    if (currentPath === '~/blogs') {
-        options = Object.keys(blogPosts || {})
-    } else {
-        const dir = fileSystem[currentPath]
+    if (currentPath.startsWith('~/blogs')) {
+      const relativePath = currentPath.replace('~/blogs', '').replace(/^\//, '')
+      const currentParts = relativePath ? relativePath.split('/') : []
 
-        if (dir) {
-        options = [...dir.folders, ...dir.files]
+      const folders = new Set()
+      const files = []
+
+      Object.keys(blogPosts || {}).forEach((postPath) => {
+        const parts = postPath.split('/')
+
+        const isInCurrentDirectory = currentParts.every(
+          (part, index) => parts[index] === part
+        )
+
+        if (!isInCurrentDirectory) return
+
+        const nextItem = parts[currentParts.length]
+
+        if (!nextItem) return
+
+        if (parts.length === currentParts.length + 1) {
+          files.push(nextItem)
+        } else {
+          folders.add(`${nextItem}/`)
         }
+      })
+
+      options = [...Array.from(folders), ...files]
+    } else {
+      const dir = fileSystem[currentPath]
+
+      if (dir) {
+        options = [
+          ...dir.folders.map((folder) => `${folder}/`),
+          ...dir.files,
+        ]
+      }
     }
 
     const matches = options.filter((option) => option.startsWith(currentArg))
 
     if (matches.length === 1) {
-        setInput(`${command} ${matches[0]}`)
+      setInput(`${command} ${matches[0]}`)
     } else if (matches.length > 1) {
-        addOutput(matches.join('  '))
+      addOutput(matches.join('  '))
     }
-    }
+  }
 
   const handleKeyDown = (event) => {
 

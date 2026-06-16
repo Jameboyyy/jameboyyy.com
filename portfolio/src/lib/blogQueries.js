@@ -4,6 +4,8 @@ export const getPosts = async () => {
   return client.fetch(`*[_type == "post"] | order(publishedAt desc) {
     title,
     "slug": slug.current,
+    category,
+    subcategory,
     excerpt,
     publishedAt,
     body

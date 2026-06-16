@@ -23,8 +23,11 @@ const Home = () => {
 
         console.log('SANITY POSTS:', posts)
 
+        console.log(posts)
         const formattedPosts = posts.reduce((acc, post) => {
-          acc[`${post.slug}.md`] = post
+          const path =
+            `${post.category}/${post.subcategory}/${post.slug}.md`
+          acc[path] = post
           return acc
         }, {})
 
