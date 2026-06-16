@@ -34,3 +34,10 @@
 .blogBody p {
   margin-bottom: 1rem;
 }
+
+.blogImage {
+  width: 100%;
+  border-radius: 12px;
+  margin: 1.25rem 0;
+  border: 1px solid var(--border);
+}

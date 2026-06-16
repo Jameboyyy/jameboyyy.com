@@ -1,5 +1,18 @@
 import { PortableText } from '@portabletext/react'
+import { urlFor } from '../../lib/sanityImage'
 import './blogPanel.css'
+
+const components = {
+  type: {
+    image: ({ value }) => {
+      <img
+        className="blogImage"
+        src={urlFor(value).width(900).auto('format').url()}
+        alt={value.alt || 'Blog Image'}
+      />
+    }
+  }
+}
 
 const BlogPanel = ({ post }) => {
   return (
@@ -18,7 +31,7 @@ const BlogPanel = ({ post }) => {
 
       {post.body && (
         <div className="blogBody">
-          <PortableText value={post.body} />
+          <PortableText value={post.body} components={components} />
         </div>
       )}
     </article>
