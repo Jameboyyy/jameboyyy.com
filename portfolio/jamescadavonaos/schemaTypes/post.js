@@ -18,6 +18,24 @@ export default {
             },
         },
         {
+            name: 'category',
+            title: 'Category',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Azure', value: 'azure' },
+                    { title: 'DevOps', value: 'devops' },
+                    { title: 'Projects', value: 'projects' },
+                    { title: 'Career', value: 'career' },
+                ],
+            },
+        },
+        {
+            name: 'subcategory',
+            title: 'Subcategory',
+            type: 'string',
+        },
+        {
             name: 'excerpt',
             title: 'Excerpt',
             type: 'text',

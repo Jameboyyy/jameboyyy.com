@@ -12,7 +12,7 @@
   padding: clamp(16px, 2vw, 28px);
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  grid-template-rows: auto 240px;
+  grid-template-rows: 1fr 360px;
   gap: 18px;
   box-sizing: border-box;
 }
@@ -41,6 +41,8 @@
 .bottomLeft {
   grid-column: 1;
   grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 14px;

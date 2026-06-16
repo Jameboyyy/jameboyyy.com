@@ -52,12 +52,15 @@ const Home = () => {
 
       <div className="dashboardLayout">
         <div className="mainViewerArea">
-          {activeProject && <ProjectPanel project={activeProject} />}
-          {activeView === 'skills' && <SkillPanel />}
-          {activeView === 'about' && <AboutPanel />}
-          {activeView === 'contact' && <ContactPanel />}
-
-          {!activeView && (
+          {activeProject ? (
+            <ProjectPanel project={activeProject} />
+          ) : activeView === "skills" ? (
+            <SkillPanel />
+          ) : activeView === "about" ? (
+            <AboutPanel />
+          ) : activeView === "contact" ? (
+            <ContactPanel />
+          ) : (
             <div className="defaultPanel">
               <p>Run commands in the terminal to explore.</p>
             </div>
