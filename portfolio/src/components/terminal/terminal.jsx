@@ -172,12 +172,24 @@ const Terminal = ({
       return
     }
 
-    if (currentPath === '~/blogs' && blogPosts?.[target]) {
-        setActiveBlogPost(blogPosts[target])
-        onOpenView('blog')
-        addOutput(`Opening ${target} in blog panel...`)
+    if (currentPath.startsWith('~/blogs')) {
+      const relativePath = currentPath
+        .replace('~/blogs', '')
+        .replace(/^\//, '')
+
+      const postKey = relativePath
+        ? `${relativePath}/${target}`
+        : target
+
+      const post = blogPosts?.[postKey]
+
+      if (post) {
+        addOutput(
+          `${post.title} - ${post.excerpt || 'No excerpt available.'} Run: open ${target}`
+        )
         return
       }
+    }
 
     const fullPath = getFullPath(target)
 
@@ -192,6 +204,24 @@ const Terminal = ({
     if (!target) {
       addOutput('open: missing target')
       return
+    }
+
+    if (currentPath.startsWith('~/blogs')) {
+      const relativePath = currentPath
+        .replace('~/blogs', '')
+        .replace(/^\//, '')
+
+      const postKey = relativePath
+        ? `${relativePath}/${target}`
+        : target
+
+      const post = blogPosts?.[postKey]
+
+      if (post) {
+        setActiveBlogPost(post)
+        addOutput(`Opening ${target} in blog panel...`)
+        return
+      }
     }
 
     if (currentPath === '~/projects') {
