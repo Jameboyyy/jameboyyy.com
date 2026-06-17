@@ -12,7 +12,7 @@ const ContactPanel = () => {
         <img src="/Contact.jpg" alt="profile" />
         <div>
           <strong>James Cadavona</strong>
-          <p>Full Stack Engineer</p>
+          <p>Aspiring Azure Cloud & DevOps Engineer</p>
         </div>
       </div>
 
@@ -40,16 +40,19 @@ const ContactPanel = () => {
       <div className="contactSection">
         <h3>Availability</h3>
         <p>
-          Open to full-time opportunities in full stack and backend development.
-          Also interested in roles that involve infrastructure and system design.
+          Open to full-time opportunities in Azure cloud, infrastructure, DevOps,
+          and platform-focused roles. Also interested in positions that combine
+          software development with cloud operations and automation.
         </p>
       </div>
 
       <div className="contactSection">
         <h3>Collaboration</h3>
         <p>
-          Interested in working on products where I can contribute across the
-          stack and grow into building and maintaining production systems.
+          Interested in working on teams that build, automate, and maintain
+          reliable cloud environments. Looking for opportunities to contribute
+          to infrastructure, networking, deployment workflows, and operational
+          excellence while continuing to grow as an Azure-focused engineer.
         </p>
       </div>
     </div>
