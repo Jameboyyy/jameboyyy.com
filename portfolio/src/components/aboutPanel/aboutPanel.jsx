@@ -16,7 +16,7 @@ const AboutPanel = () => {
 
             <div>
                 <strong>James Daniel Cadavona</strong>
-                <p>Full Stack Engineer</p>
+                <p>Aspiring Azure Cloud & DevOps Engineer</p>
             </div>
         </div>
 
@@ -28,7 +28,7 @@ const AboutPanel = () => {
   
           <div className="aboutCard">
             <span>Role</span>
-            <strong>Full Stack → DevOps Focus</strong>
+            <strong>Azure Administration & DevOps Focus</strong>
           </div>
   
           <div className="aboutCard">
@@ -45,34 +45,34 @@ const AboutPanel = () => {
         <div className="aboutSection">
           <h3>Overview</h3>
           <p>
-          James Daniel Cadavona: Full Stack Engineer focused on building end-to-end applications with an interest in backend systems and infrastructure.
+          James Daniel Cadavona is a Computer Science graduate with a background in software development and a growing focus on Azure cloud infrastructure, networking, and DevOps practices.
+
+          I am currently building hands-on projects and a hybrid Azure homelab while pursuing Microsoft Azure certifications and infrastructure-focused technologies such as Terraform and Kubernetes.
           </p>
           <p>
           I hold a Bachelor of Science in Computer Science from California State
             University, Fullerton, and a Master of Science in Software Engineering with
             a focus in DevOps from Western Governors University.
           </p>
-          <p>
-          I enjoy working across the stack, from developing user interfaces to
-            designing APIs and deploying applications in cloud environments.
-          </p>
         </div>
   
         <div className="aboutSection">
           <h3>Technical Focus</h3>
           <ul>
-            <li>Full stack development (React / React Native / Node / Python)</li>
-            <li>Cloud and infrastructure (AWS, Azure, Terraform)</li>
-            <li>Containerization and deployment workflows (Docker, Kubernetes)</li>
-            <li>Building scalable and observable systems (CI/CD, Prometheus, Grafana)</li>
+            <li>Azure Administration and cloud infrastructure</li>
+            <li>Azure networking and security</li>
+            <li>Infrastructure as Code (Terraform)</li>
+            <li>Containerization and orchestration (Docker, Kubernetes)</li>
+            <li>CI/CD and automation workflows</li>
+            <li>Software development (React, React Native, Node.js, Python)</li>
           </ul>
         </div>
         <div className="aboutSection">
             <h3>Current Work</h3>
             <p>
-                Building full-stack applications that simulate real-world systems, with a focus
-                on connecting frontend interfaces to backend services and deploying them in
-                cloud environments.
+              Currently building an Azure-focused homelab environment to gain practical experience with networking, identity, storage, monitoring, and infrastructure security.
+
+              Recent projects include Azure Storage networking, service endpoints, network security controls, and technical documentation through a hands-on blog series.
             </p>
             <p>
                 Recent projects involve system monitoring dashboards, API design, and
@@ -82,13 +82,10 @@ const AboutPanel = () => {
         <div className="aboutSection">
             <h3>Direction</h3>
             <p>
-                Interested in moving deeper into infrastructure and DevOps over time,
-                particularly in areas like deployment pipelines, system reliability, and
-                scalable architecture.
+                Working toward a career in Azure Cloud Engineering, DevOps, or Infrastructure Engineering.
             </p>
             <p>
-                Currently focused on building a strong foundation through hands-on
-                development and real-world project experience.
+                Current learning goals include AZ-104, Terraform, Azure DevOps, Kubernetes, and cloud security, with an emphasis on translating certification knowledge into real-world projects.
             </p>
             </div>
       </div>
