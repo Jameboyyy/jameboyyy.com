@@ -3,15 +3,15 @@ import { urlFor } from '../../lib/sanityImage'
 import './blogPanel.css'
 
 const components = {
-  type: {
-    image: ({ value }) => {
+  types: {
+    image: ({ value }) => (
       <img
         className="blogImage"
         src={urlFor(value).width(900).auto('format').url()}
-        alt={value.alt || 'Blog Image'}
+        alt={value.alt || 'Blog image'}
       />
-    }
-  }
+    ),
+  },
 }
 
 const BlogPanel = ({ post }) => {
