@@ -1,5 +1,5 @@
 import { PortableText } from '@portabletext/react'
-import { urlFor } from '../../lib/sanityImage'
+import { urlFor } from '../../lib/sanityImages'
 import './blogPanel.css'
 
 const components = {
