@@ -31,8 +31,6 @@ const SkillPanel = ( { onClose }) => {
               <p className="skillsEyebrow">SYSTEM CAPABILITIES</p>
               <h2>Skills Matrix</h2>
             </div>
-    
-            <button onClick={onClose}>×</button>
           </div>
     
           <div className="skillsGrid">

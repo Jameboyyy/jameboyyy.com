@@ -19,15 +19,6 @@
     margin-bottom: 18px;
   }
   
-  .skillsPanelHeader button {
-    border: none;
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-h);
-    border-radius: 10px;
-    padding: 4px 10px;
-    cursor: pointer;
-  }
-  
   .skillsEyebrow {
     color: var(--accent);
     font-family: var(--mono);
