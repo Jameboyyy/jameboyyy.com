@@ -2,27 +2,32 @@ import './skillPanel.css'
 
 const skillGroups = [
   {
-    title: "Cloud",
+    title: "Azure",
     status: "Focus",
     skills: [
-      "Microsoft Azure",
-      "Terraform",
       "Azure CLI",
-      "ARM Templates",
-      "Azure App Service",
-      "Azure Monitor"
+      "Azure PowerShell",
+      "VNets",
+      "Subnets",
+      "NSGs",
+      "Azure Storage",
+      "Private Endpoints",
+      "Service Endpoints",
+      "Azure Monitor",
+      "Log Analytics"
     ],
   },
   {
     title: "Infrastructure",
     status: "Building",
     skills: [
+      "Terraform",
       "Linux",
       "Docker",
       "Kubernetes",
       "GitHub Actions",
       "CI/CD",
-      "Networking"
+      "Git"
     ],
   },
   {
@@ -45,8 +50,7 @@ const skillGroups = [
       "TypeScript",
       "Python",
       "React",
-      "React Native",
-      "Git"
+      "React Native"
     ],
   }
 ]
