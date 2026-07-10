@@ -27,6 +27,7 @@ export default {
                     { title: 'DevOps', value: 'devops' },
                     { title: 'Projects', value: 'projects' },
                     { title: 'Career', value: 'career' },
+                    { title: 'Homelab', value: 'homelab' },
                 ],
             },
         },
