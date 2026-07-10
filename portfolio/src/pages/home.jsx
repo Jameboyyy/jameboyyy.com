@@ -25,8 +25,16 @@ const Home = () => {
 
         console.log(posts)
         const formattedPosts = posts.reduce((acc, post) => {
-          const path =
-            `${post.category}/${post.subcategory}/${post.slug}.md`
+          const pathParts = [post.category]
+
+          if (post.subcategory) {
+            pathParts.push(post.subcategory)
+          }
+
+          pathParts.push(`${post.slug}.md`)
+
+          const path = pathParts.join('/')
+
           acc[path] = post
           return acc
         }, {})
