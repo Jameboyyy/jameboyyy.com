@@ -24,10 +24,10 @@ export default {
             options: {
                 list: [
                     { title: 'Azure', value: 'azure' },
+                    { title: 'Systems Administration', value: 'systems-administration' },
                     { title: 'DevOps', value: 'devops' },
-                    { title: 'Projects', value: 'projects' },
-                    { title: 'Career', value: 'career' },
                     { title: 'Homelab', value: 'homelab' },
+                    { title: 'Career', value: 'career' },
                 ],
             },
         },
