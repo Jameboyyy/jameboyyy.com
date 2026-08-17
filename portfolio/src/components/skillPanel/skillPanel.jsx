@@ -2,87 +2,108 @@ import './skillPanel.css'
 
 const skillGroups = [
   {
-    title: "Azure",
+    title: "Systems Administration",
+    status: "Core",
+    skills: [
+      "Linux",
+      "Windows Server",
+      "Active Directory",
+      "Entra ID",
+      "Users & Groups",
+      "File Permissions",
+      "NTFS",
+      "Group Policy",
+      "PowerShell",
+      "Bash",
+      "SSH",
+      "systemd",
+      "firewalld"
+    ],
+  },
+  {
+    title: "Cloud & Networking",
     status: "Focus",
     skills: [
+      "Microsoft Azure",
       "Azure CLI",
-      "Azure PowerShell",
+      "Azure Monitor",
+      "Log Analytics",
+      "Azure RBAC",
       "VNets",
       "Subnets",
       "NSGs",
-      "Azure Storage",
       "Private Endpoints",
-      "Service Endpoints",
-      "Azure Monitor",
-      "Log Analytics"
+      "Azure Storage",
+      "TCP/IP",
+      "DNS",
+      "DHCP",
+      "VPN",
+      "Subnetting"
     ],
   },
   {
-    title: "Infrastructure",
+    title: "Automation & DevOps",
     status: "Building",
     skills: [
       "Terraform",
-      "Linux",
-      "Docker",
-      "Kubernetes",
-      "GitHub Actions",
+      "Ansible",
+      "GitLab CI/CD",
+      "Git",
+      "Kustomize",
+      "Argo CD",
+      "Infrastructure as Code",
+      "Configuration Management",
       "CI/CD",
-      "Git"
+      "GitOps"
     ],
   },
   {
-    title: "Backend",
-    status: "Primary",
+    title: "Containers & Monitoring",
+    status: "Hands-On",
     skills: [
-      "Node.js",
-      "Express",
-      "REST APIs",
-      "PostgreSQL",
-      "MongoDB",
-      "Supabase"
-    ],
-  },
-  {
-    title: "Programming",
-    status: "Daily",
-    skills: [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "React",
-      "React Native"
+      "Docker",
+      "Docker Compose",
+      "Kubernetes",
+      "Amazon EKS",
+      "Prometheus",
+      "Grafana",
+      "PromQL",
+      "Health Checks",
+      "Liveness Probes",
+      "Readiness Probes",
+      "Horizontal Pod Autoscaling"
     ],
   }
 ]
 
-const SkillPanel = ( { onClose }) => {
-    return (
-        <div className="skillsPanel">
-          <div className="skillsPanelHeader">
-            <div>
-              <p className="skillsEyebrow">SYSTEM CAPABILITIES</p>
-              <h2>Skills Matrix</h2>
+const SkillPanel = ({ onClose }) => {
+  return (
+    <div className="skillsPanel">
+      <div className="skillsPanelHeader">
+        <div>
+          <p className="skillsEyebrow">SYSTEM CAPABILITIES</p>
+          <h2>Skills Matrix</h2>
+        </div>
+      </div>
+
+      <div className="skillsGrid">
+        {skillGroups.map((group) => (
+          <div className="skillGroupCard" key={group.title}>
+            <div className="skillGroupHeader">
+              <h3>{group.title}</h3>
+              <span>{group.status}</span>
+            </div>
+
+            <div className="skillTags">
+              {group.skills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
             </div>
           </div>
-    
-          <div className="skillsGrid">
-            {skillGroups.map((group) => (
-              <div className="skillGroupCard" key={group.title}>
-                <div className="skillGroupHeader">
-                  <h3>{group.title}</h3>
-                  <span>{group.status}</span>
-                </div>
-    
-                <div className="skillTags">
-                  {group.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
+        ))}
+      </div>
+    </div>
+  )
 }
 
-export default SkillPanel;
+export default SkillPanel
