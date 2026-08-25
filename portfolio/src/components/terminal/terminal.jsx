@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Draggable from 'react-draggable'
 import './terminal.css'
 
@@ -49,13 +49,41 @@ const Terminal = ({
     { type: 'system', text: 'Type help to get started.' },
   ])
 
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [clientPrincipal, setClientPrincipal] = useState(null)
   const [editorMode, setEditorMode] = useState(false)
   const [editingFile, setEditingFile] = useState(null)
   const [draftContent, setDraftContent] = useState('')
 
   const nodeRef = useRef(null)
   const inputRef = useRef(null)
+
+  const isAdmin = clientPrincipal?.userRoles?.includes('portfolio_admin') ?? false
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadClientPrincipal = async () => {
+      try {
+        const response = await fetch('/.auth/me')
+
+        if (!response.ok) return
+
+        const auth = await response.json()
+
+        if (isMounted) {
+          setClientPrincipal(auth?.clientPrincipal ?? null)
+        }
+      } catch {
+        // A failed auth request must leave the visitor unauthenticated.
+      }
+    }
+
+    loadClientPrincipal()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const addOutput = (text) => {
     setHistory((prev) => [...prev, { type: 'output', text }])
@@ -300,7 +328,7 @@ const Terminal = ({
     switch (command) {
       case 'help':
         addOutput(
-          'Commands: help, ls, cd, cat, pwd, whoami, open, clear, login, nano'
+          'Commands: help, ls, cd, cat, pwd, whoami, open, clear, login, logout, nano'
         )
         break
 
@@ -321,7 +349,14 @@ const Terminal = ({
         break
 
       case 'whoami':
-        addOutput(isAdmin ? 'james (admin)' : 'guest')
+        if (!clientPrincipal) {
+          addOutput('guest')
+          break
+        }
+
+        addOutput(
+          `${clientPrincipal.userDetails || clientPrincipal.userId || 'authenticated user'}${isAdmin ? ' (admin)' : ''}`
+        )
         break
 
       case 'open':
@@ -333,12 +368,11 @@ const Terminal = ({
         break
 
       case 'login':
-        if (target === 'your-secret-password') {
-          setIsAdmin(true)
-          addOutput('admin permissions granted')
-        } else {
-          addOutput('login failed')
-        }
+        window.location.assign('/.auth/login/aad?post_login_redirect_uri=/')
+        break
+
+      case 'logout':
+        window.location.assign('/.auth/logout?post_logout_redirect_uri=/')
         break
 
       case 'nano':
@@ -368,7 +402,7 @@ const Terminal = ({
     }
   }
 
-    const commands = ['help', 'ls', 'cd', 'cat', 'pwd', 'whoami', 'open', 'clear', 'login', 'nano']
+    const commands = ['help', 'ls', 'cd', 'cat', 'pwd', 'whoami', 'open', 'clear', 'login', 'logout', 'nano']
 
   const handleTabCompletion = () => {
     const parts = input.trim().split(' ')
