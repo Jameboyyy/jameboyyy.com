@@ -2,6 +2,8 @@ import { client } from './sanityClient.js'
 
 export const getPosts = async () => {
   return client.fetch(`*[_type == "post"] | order(publishedAt desc) {
+    _id,
+    _rev,
     title,
     "slug": slug.current,
     category,

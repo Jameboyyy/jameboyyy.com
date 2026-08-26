@@ -25,7 +25,7 @@ const Home = () => {
 
         console.log(posts)
         const formattedPosts = posts.reduce((acc, post) => {
-          const pathParts = [post.category]
+          const pathParts = post.category ? [post.category] : []
 
           if (post.subcategory) {
             pathParts.push(post.subcategory)

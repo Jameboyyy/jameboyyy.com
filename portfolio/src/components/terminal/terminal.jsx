@@ -36,6 +36,20 @@ const fileContent = {
   '~/skills.md': 'Run: open skills.md',
 }
 
+const portableTextToPlainText = (body) => {
+  if (!Array.isArray(body)) return ''
+
+  return body
+    .filter((block) => block?._type === 'block')
+    .map((block) =>
+      (block.children || [])
+        .filter((child) => child?._type === 'span')
+        .map((child) => child.text || '')
+        .join('')
+    )
+    .join('\n\n')
+}
+
 const Terminal = ({
   onOpenView,
   blogPosts,
@@ -53,6 +67,7 @@ const Terminal = ({
   const [editorMode, setEditorMode] = useState(false)
   const [editingFile, setEditingFile] = useState(null)
   const [draftContent, setDraftContent] = useState('')
+  const [isSaving, setIsSaving] = useState(false)
 
   const nodeRef = useRef(null)
   const inputRef = useRef(null)
@@ -298,17 +313,41 @@ const Terminal = ({
     addOutput(`open: cannot open ${target} from ${currentPath}`)
   }
 
-  const savePost = () => {
-    setBlogPosts((prev) => ({
-      ...prev,
-      [editingFile]: {
-        title: editingFile.replace('.md', '').replaceAll('-', ' '),
-        content: draftContent,
-      },
-    }))
+  const savePost = async () => {
+    if (isSaving) return
 
-    setEditorMode(false)
-    addOutput(`Saved ${editingFile}`)
+    setIsSaving(true)
+
+    try {
+      const response = await fetch('/api/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: editingFile,
+          content: draftContent,
+          title: blogPosts?.[editingFile]?.title,
+          revision: blogPosts?.[editingFile]?._rev,
+        }),
+      })
+
+      const result = await response.json().catch(() => null)
+
+      if (!response.ok) {
+        throw new Error(result?.error || `save failed (${response.status})`)
+      }
+
+      setBlogPosts((prev) => ({
+        ...prev,
+        [editingFile]: result.post,
+      }))
+
+      setEditorMode(false)
+      addOutput(`Saved ${editingFile}`)
+    } catch (error) {
+      addOutput(`nano: ${error.message}`)
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const runCommand = (rawCommand) => {
@@ -375,13 +414,16 @@ const Terminal = ({
         window.location.assign('/.auth/logout?post_logout_redirect_uri=/')
         break
 
-      case 'nano':
+      case 'nano': {
         if (!isAdmin) {
           addOutput('nano: permission denied')
           break
         }
 
-        if (currentPath !== '~/blogs') {
+        if (
+          currentPath !== '~/blogs' &&
+          !currentPath.startsWith('~/blogs/')
+        ) {
           addOutput('nano: can only edit files inside ~/blogs')
           break
         }
@@ -391,11 +433,20 @@ const Terminal = ({
           break
         }
 
-        setEditingFile(target)
-        setDraftContent(blogPosts[target]?.content || '')
+        const relativePath = currentPath
+          .replace('~/blogs', '')
+          .replace(/^\//, '')
+        const postKey = relativePath ? `${relativePath}/${target}` : target
+
+        setEditingFile(postKey)
+        setDraftContent(
+          blogPosts[postKey]?.content ||
+            portableTextToPlainText(blogPosts[postKey]?.body)
+        )
         setEditorMode(true)
-        addOutput(`Opening nano editor for ${target}...`)
+        addOutput(`Opening nano editor for ${postKey}...`)
         break
+      }
 
       default:
         addOutput(`command not found: ${command}`)
@@ -515,9 +566,12 @@ const Terminal = ({
               />
 
               <div className="nanoBottomBar">
-                <button onClick={savePost}>Save</button>
+                <button onClick={savePost} disabled={isSaving}>
+                  {isSaving ? 'Saving...' : 'Save'}
+                </button>
 
                 <button
+                  disabled={isSaving}
                   onClick={() => {
                     setEditorMode(false)
                     addOutput(`Closed ${editingFile}`)
