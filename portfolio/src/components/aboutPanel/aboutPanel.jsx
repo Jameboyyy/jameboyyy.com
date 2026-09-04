@@ -16,7 +16,7 @@ const AboutPanel = () => {
 
         <div>
           <strong>James Daniel Cadavona</strong>
-          <p>Systems, Cloud & DevOps Engineer</p>
+          <p>IT Support, Systems, Cloud & DevOps</p>
         </div>
       </div>
 
@@ -28,7 +28,7 @@ const AboutPanel = () => {
 
         <div className="aboutCard">
           <span>Role</span>
-          <strong>Systems Administration & Cloud Operations</strong>
+          <strong>End-User Support, Systems Administration & Cloud Operations</strong>
         </div>
 
         <div className="aboutCard">
@@ -46,21 +46,26 @@ const AboutPanel = () => {
         <h3>Overview</h3>
         <p>
           Computer Science graduate with an M.S. in Software Engineering – DevOps
-          Engineering and hands-on experience across Linux administration, Azure
-          infrastructure, cloud networking, monitoring, containers, and automation.
+          Engineering and hands-on experience across end-user support, Windows and
+          Linux administration, Azure infrastructure, networking, identity,
+          monitoring, containers, and automation.
         </p>
 
         <p>
-          I build infrastructure-focused projects that emphasize system reliability,
-          troubleshooting, observability, security, and repeatable deployment.
+          I enjoy troubleshooting user and system issues, supporting reliable
+          environments, and building infrastructure-focused projects around
+          administration, observability, security, and repeatable deployment.
         </p>
       </div>
 
       <div className="aboutSection">
         <h3>Technical Focus</h3>
         <ul>
-          <li>Linux and Windows systems administration</li>
+          <li>End-user support, troubleshooting, and technical documentation</li>
+          <li>Windows administration, Active Directory, Group Policy, and permissions</li>
+          <li>Linux systems administration and service management</li>
           <li>Azure infrastructure, networking, identity, and monitoring</li>
+          <li>Hardware, peripherals, workstation setup, and deployment</li>
           <li>Infrastructure as Code with Terraform and automation with Ansible</li>
           <li>Containerization and orchestration with Docker and Kubernetes</li>
           <li>Monitoring and observability with Prometheus and Grafana</li>
@@ -71,27 +76,30 @@ const AboutPanel = () => {
       <div className="aboutSection">
         <h3>Current Work</h3>
         <p>
-          Building and expanding systems and cloud labs focused on Linux administration,
-          Azure networking and security, monitoring, identity, storage, and automation.
+          Building and expanding IT, systems, and cloud labs focused on Active Directory,
+          Windows administration, Linux, Azure networking and security, identity,
+          storage, monitoring, troubleshooting, and automation.
         </p>
 
         <p>
-          Recent projects include an Azure infrastructure homelab, StackWatch cloud
-          monitoring platform, and Kubernetes deployment workflows using Amazon EKS,
-          GitLab CI/CD, Kustomize, and Argo CD.
+          Recent projects include a Windows Server Active Directory homelab, Azure
+          infrastructure homelab, StackWatch cloud monitoring platform, and Kubernetes
+          deployment workflows using Amazon EKS, GitLab CI/CD, Kustomize, and Argo CD.
         </p>
       </div>
 
       <div className="aboutSection">
         <h3>Direction</h3>
         <p>
-          Targeting early-career roles in Systems Administration, Linux Administration,
-          Cloud/SysOps Engineering, Infrastructure Engineering, and DevOps.
+          Targeting early-career roles in IT Support, Help Desk, Systems Administration,
+          Linux Administration, Cloud/SysOps Engineering, Infrastructure Engineering,
+          and DevOps.
         </p>
 
         <p>
-          Current learning priorities include Linux administration, Azure administration,
-          Terraform, Ansible, Kubernetes, and production-focused cloud operations.
+          Current learning priorities include Windows and Linux administration,
+          Active Directory, networking, Azure administration, Terraform, Ansible,
+          Kubernetes, and production-focused cloud operations.
         </p>
       </div>
     </div>

@@ -12,7 +12,7 @@ const ContactPanel = () => {
         <img src="/Contact.jpg" alt="James Cadavona" />
         <div>
           <strong>James Cadavona</strong>
-          <p>Systems, Cloud & DevOps Engineer</p>
+          <p>IT Support, Systems, Cloud & DevOps</p>
         </div>
       </div>
 
@@ -40,19 +40,20 @@ const ContactPanel = () => {
       <div className="contactSection">
         <h3>Availability</h3>
         <p>
-          Open to full-time opportunities in systems administration, Linux
-          administration, cloud operations, SysOps, infrastructure engineering,
-          and junior DevOps roles.
+          Open to full-time opportunities in IT support, help desk, systems
+          administration, Linux administration, cloud operations, SysOps,
+          infrastructure engineering, and junior DevOps roles.
         </p>
       </div>
 
       <div className="contactSection">
         <h3>Collaboration</h3>
         <p>
-          Interested in working with teams that operate, automate, monitor, and
-          improve reliable infrastructure. Looking for opportunities to contribute
-          across Linux and Windows systems, cloud environments, networking,
-          monitoring, deployment workflows, and infrastructure automation.
+          Interested in working with teams that support end users, troubleshoot
+          technical issues, administer systems, and improve reliable infrastructure.
+          Looking for opportunities to contribute across Windows and Linux systems,
+          Active Directory, hardware and workstation support, networking, cloud
+          environments, monitoring, deployment workflows, and infrastructure automation.
         </p>
       </div>
     </div>
