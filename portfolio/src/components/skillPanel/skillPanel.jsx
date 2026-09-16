@@ -76,7 +76,7 @@ const skillGroups = [
   }
 ]
 
-const SkillPanel = ({ onClose }) => {
+const SkillPanel = () => {
   return (
     <div className="skillsPanel">
       <div className="skillsPanelHeader">
