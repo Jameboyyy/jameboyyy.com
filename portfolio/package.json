@@ -21,7 +21,7 @@
     "react-draggable": "^4.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
+    "@babel/core": "^8.0.6",
     "@eslint/js": "^10.0.1",
     "@rolldown/plugin-babel": "^0.2.4",
     "@testing-library/jest-dom": "^7.0.1",
